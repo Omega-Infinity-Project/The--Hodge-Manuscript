@@ -122,9 +122,7 @@
     
     {\LARGE $\Omega$-Singularity V90-$\varphi^{11}$}\\[0.5cm]
     {\footnotesize (Carlos E. Venegas)}\\[2cm]
-    
-    \includegraphics[width=0.5\textwidth]{Cover Image HZ bridge.jpg} % Placeholder for logo if desired
-    
+       
     \vfill
     
     {\large December 18, 2025}\\[0.5cm]
@@ -161,11 +159,9 @@ All necessary definitions, proofs, algorithms, and numerical verifications are c
 \end{abstract}
 
 % Table of Contents
-
 \tableofcontents
 
 % List of Figures and Tables (if any)
-
 \listoftables
 
 % Main content
@@ -1614,19 +1610,19 @@ def omega_iteration(X, alpha0, k, omega, epsilon=1e-10):
     
     m = 0
     while True:
-    # Compute theta = <alpha, omega_phi> / ||omega_phi||^2
-    theta = integrate(X, alpha * omega_phi**(n-2*k)) / norm_omega_phi_sq
-    
-    # Hodge projector P^{k,k}
-    P = hodge_projector(alpha, (k, k))
+        # Compute theta = <alpha, omega_phi> / ||omega_phi||^2
+        theta = integrate(X, alpha * omega_phi**(n-2*k)) / norm_omega_phi_sq
         
-    # Omega operator
-    alpha_new = (np.exp(2j*np.pi*theta) / phi11) * alpha + phi11**(-1/n)*P
+        # Hodge projector P^{k,k}
+        P = hodge_projector(alpha, (k, k))
         
-    # Check convergence
-    diff = norm(alpha_new - alpha)
-    if diff < epsilon:
-        break
+        # Omega operator
+        alpha_new = (np.exp(2j*np.pi*theta) / phi11) * alpha + phi11**(-1/n) * P
+        
+        # Check convergence
+        diff = norm(alpha_new - alpha)
+        if diff < epsilon:
+            break
             
         alpha = alpha_new
         m += 1
